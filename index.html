@@ -1,0 +1,86 @@
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#fff;font-family:system-ui,-apple-system,sans-serif;}
+canvas{display:block;border-radius:12px;border:1.5px solid #e8e8e8;touch-action:none;}
+.fml{font-size:13px;padding:10px 16px;border-radius:20px;background:#f5f5f5;border:1.5px solid #d0d0d0;color:#2c2c2a;margin:6px 0;font-family:ui-monospace,monospace;line-height:1.8;}
+.row{display:flex;align-items:center;gap:8px;margin:6px 0;flex-wrap:wrap;}
+.pill{font-size:13px;font-weight:500;color:#2c2c2a;background:#f5f5f5;border:1.5px solid #d0d0d0;border-radius:20px;padding:6px 14px;white-space:nowrap;}
+.btn{padding:7px 15px;border-radius:20px;font-size:13px;font-weight:500;cursor:pointer;border:1.5px solid #d0d0d0;background:#fff;color:#2c2c2a;}
+.btn.on{border-color:#185fa5;background:#e6f1fb;color:#185fa5;}
+.val{min-width:56px;text-align:center;font-size:13px;font-weight:500;color:#2c2c2a;background:#f5f5f5;border:1.5px solid #d0d0d0;border-radius:20px;padding:5px 10px;}
+.info{font-size:12px;padding:8px 14px;border-radius:20px;background:#f5f5f5;border:1.5px solid #d0d0d0;color:#555;margin:6px 0;font-family:ui-monospace,monospace;line-height:1.7;}
+input[type=range]{flex:1;min-width:100px;}
+</style>
+
+<canvas id="cv" style="width:100%;height:60vh;min-height:350px;"></canvas>
+<div class="fml"><b style="color:#1D9E75">E = K + U = constante</b> — <b style="color:#378ADD">U(x)=½k·x²</b> (parabole ↑) et <b style="color:#E24B4A">K(x)=E−U</b> (parabole ↓) : leur somme reste plate</div>
+
+<div class="row">
+  <button class="btn on" id="bP" onclick="paused=!paused;this.textContent=paused?'Lecture':'Pause';this.className=paused?'btn':'btn on';">Pause</button>
+  <span class="pill" style="color:#185fa5;border-color:#b5d4f4;">amplitude</span>
+  <input type="range" id="A" min="1" max="2.5" value="2.2" step="0.1" style="accent-color:#378ADD;max-width:160px;">
+  <span class="val" id="Av" style="color:#185fa5;border-color:#b5d4f4;">2.2</span>
+  <span class="pill" style="color:#0F6E56;border-color:#79c6a6;">vitesse</span>
+  <input type="range" id="sp" min="0.3" max="1.5" value="0.9" step="0.1" style="accent-color:#1D9E75;max-width:140px;">
+  <span class="val" id="spv" style="color:#0F6E56;border-color:#79c6a6;">0.9×</span>
+</div>
+
+<div class="info" id="info"></div>
+
+<script>
+const cv=document.getElementById('cv'),ctx=cv.getContext('2d');
+const RED='#E24B4A',BLUE='#378ADD',GREEN='#1D9E75',INK='#3d3d3a',GREY='#9aa0a6',AX='#c8ccd0';
+let W=0,H=0,dpr=1,paused=false,A=2.2,speed=0.9,phase=0;
+const cpar=0.32, Amax=2.5;
+document.getElementById('A').addEventListener('input',e=>{A=+e.target.value;document.getElementById('Av').textContent=A.toFixed(1);});
+document.getElementById('sp').addEventListener('input',e=>{speed=+e.target.value;document.getElementById('spv').textContent=speed.toFixed(1)+'×';});
+function syncSize(){const r=cv.getBoundingClientRect();dpr=window.devicePixelRatio||1;
+  const nW=Math.round(r.width)||700,nH=Math.round(r.height)||360;
+  if(nW!==W||nH!==H){W=nW;H=nH;cv.width=W*dpr;cv.height=H*dpr;}ctx.setTransform(dpr,0,0,dpr,0,0);}
+
+function draw(){syncSize();ctx.clearRect(0,0,W,H);ctx.fillStyle='#fff';ctx.fillRect(0,0,W,H);
+  if(!paused)phase+=0.02*speed;
+  const x=A*Math.cos(phase);
+  const E0=cpar*A*A, U=cpar*x*x, K=E0-U;
+
+  // ===== GAUCHE : vallée parabolique + bille (×1.5) =====
+  const Lw=W*0.44, cxL=Lw*0.52, baseY=H*0.84;
+  const scL=Math.min(Lw*0.44/Amax, H*0.60/(cpar*Amax*Amax));   // ~1.5x plus grande
+  ctx.strokeStyle=INK;ctx.lineWidth=3;ctx.beginPath();
+  for(let xx=-Amax;xx<=Amax;xx+=0.05){const px=cxL+xx*scL,py=baseY-cpar*xx*xx*scL;xx===-Amax?ctx.moveTo(px,py):ctx.lineTo(px,py);}ctx.stroke();
+  ctx.strokeStyle='rgba(0,0,0,0.12)';ctx.setLineDash([3,4]);ctx.beginPath();ctx.moveTo(cxL-Amax*scL,baseY);ctx.lineTo(cxL+Amax*scL,baseY);ctx.stroke();ctx.setLineDash([]);
+  const bx=cxL+x*scL,by=baseY-cpar*x*x*scL;
+  ctx.strokeStyle=BLUE;ctx.lineWidth=1.5;ctx.setLineDash([3,3]);ctx.beginPath();ctx.moveTo(bx,by);ctx.lineTo(bx,baseY);ctx.stroke();ctx.setLineDash([]);
+  ctx.beginPath();ctx.arc(bx,by,12,0,7);ctx.fillStyle='#fff';ctx.fill();ctx.strokeStyle=INK;ctx.lineWidth=2.5;ctx.stroke();
+  ctx.fillStyle=GREY;ctx.font='11px system-ui';ctx.textAlign='center';ctx.fillText('bille dans une vallée parabolique',cxL,H*0.95);
+
+  // ===== DROITE : deux paraboles E-vs-x =====
+  const gx=W*0.52,gw=W*0.44,gTop=H*0.12,gBot=H*0.82;
+  const XX=xx=>gx+(xx+Amax)/(2*Amax)*gw;
+  const YY=e=>gBot-(e/(cpar*Amax*Amax*1.28))*(gBot-gTop);   // marge en haut
+  ctx.fillStyle='#fafafa';ctx.fillRect(gx,gTop,gw,gBot-gTop);ctx.strokeStyle='#e0e0e0';ctx.lineWidth=1;ctx.strokeRect(gx,gTop,gw,gBot-gTop);
+  ctx.fillStyle=GREY;ctx.font='11px system-ui';ctx.textAlign='left';ctx.fillText('énergie',gx+6,gBot-6+0);ctx.save();ctx.translate(gx+12,gTop+40);ctx.restore();
+  ctx.textAlign='right';ctx.fillText('position x',gx+gw-6,gBot-6);
+
+  // légende (au-dessus de la ligne E, zone vide) — plus de labels sur les courbes
+  let lx=gx+10;const ly=gTop+15;
+  function chip(col,txt){ctx.fillStyle=col;ctx.fillRect(lx,ly-9,11,11);ctx.fillStyle=INK;ctx.font='600 12px system-ui';ctx.textAlign='left';ctx.fillText(txt,lx+15,ly);lx+=15+ctx.measureText(txt).width+18;}
+  chip(GREEN,'E = K+U');chip(BLUE,'U(x)');chip(RED,'K(x)');
+
+  // E0 (ligne plate verte)
+  ctx.strokeStyle=GREEN;ctx.lineWidth=2.4;ctx.beginPath();ctx.moveTo(XX(-A),YY(E0));ctx.lineTo(XX(A),YY(E0));ctx.stroke();
+  // U(x) ↑ (bleu), K(x) ↓ (rouge)
+  ctx.strokeStyle=BLUE;ctx.lineWidth=2.6;ctx.beginPath();
+  for(let xx=-A;xx<=A;xx+=0.02){const px=XX(xx),py=YY(cpar*xx*xx);xx===-A?ctx.moveTo(px,py):ctx.lineTo(px,py);}ctx.stroke();
+  ctx.strokeStyle=RED;ctx.lineWidth=2.6;ctx.beginPath();
+  for(let xx=-A;xx<=A;xx+=0.02){const px=XX(xx),py=YY(E0-cpar*xx*xx);xx===-A?ctx.moveTo(px,py):ctx.lineTo(px,py);}ctx.stroke();
+  // marqueur position courante
+  ctx.strokeStyle='rgba(0,0,0,0.2)';ctx.setLineDash([3,3]);ctx.beginPath();ctx.moveTo(XX(x),gTop);ctx.lineTo(XX(x),gBot);ctx.stroke();ctx.setLineDash([]);
+  ctx.beginPath();ctx.arc(XX(x),YY(U),4.5,0,7);ctx.fillStyle=BLUE;ctx.fill();
+  ctx.beginPath();ctx.arc(XX(x),YY(K),4.5,0,7);ctx.fillStyle=RED;ctx.fill();
+  ctx.beginPath();ctx.arc(XX(x),YY(E0),4,0,7);ctx.fillStyle=GREEN;ctx.fill();
+
+  document.getElementById('info').innerHTML='x='+x.toFixed(2)+' | <b style="color:'+BLUE+'">U='+U.toFixed(2)+'</b> + <b style="color:'+RED+'">K='+K.toFixed(2)+'</b> = <b style="color:'+GREEN+'">E='+E0.toFixed(2)+'</b> (constante) — au fond K max, aux extrêmes U max';
+  requestAnimationFrame(draw);}
+draw();
+</script>
