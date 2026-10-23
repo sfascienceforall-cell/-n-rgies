@@ -70,13 +70,17 @@ a{color:inherit}
 @media (max-width:520px){.row,div:has(>input[type=range]){flex-wrap:wrap!important}
   .row>.pill:first-child,div:has(>input[type=range])>.pill:first-child{min-width:0!important;flex:1 1 100%}
   input[type=range]{min-width:0!important}.val{min-width:0!important}}
-.val{background:none!important;border:0!important;border-radius:0!important;padding:0!important;font:600 .9rem var(--f-num)!important;font-variant-numeric:tabular-nums;text-align:right;color:var(--ink)}
-.btn{background:var(--paper)!important;border:1px solid var(--line2)!important;border-radius:7px!important;color:var(--ink2)!important;
-  font:700 .82rem var(--f-ui)!important;padding:7px 13px!important;transition:background .15s,border-color .15s;cursor:pointer}
+.val{background:none!important;border:0!important;border-radius:0!important;padding:0!important;font:800 .92rem var(--f-ui)!important;font-variant-numeric:tabular-nums;text-align:right;color:var(--ink);white-space:nowrap}
+.btn{background:var(--paper)!important;border:1px solid var(--line2)!important;border-radius:8px!important;color:var(--ink)!important;
+  font:800 .82rem var(--f-ui)!important;letter-spacing:.005em;padding:8px 14px!important;transition:background .15s,border-color .15s;cursor:pointer}
+.btn:active{transform:translateY(1px)}
 .btn:hover{background:var(--press)!important;border-color:var(--faint)!important}
 .btn.on{background:var(--navy)!important;border-color:var(--navy)!important;color:#fff!important;box-shadow:none}
-.fml{background:var(--sel)!important;border:0!important;border-radius:10px!important;font:400 1.06rem/1.7 var(--f-math)!important;color:var(--ink);padding:10px 14px!important;margin:12px 0!important}
-.info{background:var(--bg)!important;border:1px solid var(--line)!important;border-radius:10px!important;font:500 .84rem/1.8 var(--f-num)!important;color:var(--muted)!important;padding:9px 14px!important}
+.fml{background:var(--sel)!important;border:0!important;border-left:4px solid var(--navy)!important;border-radius:10px!important;font:600 1rem/1.75 var(--f-ui)!important;color:var(--ink);padding:12px 16px!important;margin:12px 0!important}
+.fml b,.fml strong{font-weight:800}
+.fml sub,.fml sup,.info sub,.info sup{font-size:.72em}
+.info{background:var(--bg)!important;border:1px solid var(--line)!important;border-radius:10px!important;font:600 .86rem/1.8 var(--f-ui)!important;font-variant-numeric:tabular-nums;color:var(--muted)!important;padding:10px 14px!important}
+.info b,.info strong{font-weight:800}
 select{font:600 .86rem var(--f-ui)!important;border:1px solid var(--line2)!important;border-radius:7px!important;background:var(--paper)!important;color:var(--ink)!important;padding:6px 8px!important}
 input[type=range]{-webkit-appearance:none;appearance:none;height:24px;background:linear-gradient(var(--line),var(--line)) center/100% 4px no-repeat;cursor:pointer;--pc:var(--blue)}
 input[type=range]::-webkit-slider-runnable-track{height:4px;background:transparent;border-radius:2px}
@@ -94,7 +98,7 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(-
 .sfa-list a{display:grid;grid-template-columns:22px 1fr;gap:8px;align-items:baseline;padding:7px 8px;border-radius:8px;text-decoration:none;font:600 13px/1.35 var(--f-ui);color:var(--ink2)}
 .sfa-list a:hover{background:var(--press)}
 .sfa-list a.on{background:var(--sel);color:var(--chip-ink)}
-.sfa-list a i{font:600 11px var(--f-num);font-style:normal;color:var(--faint)}
+.sfa-list a i{font:800 11px var(--f-ui);font-style:normal;color:var(--faint)}
 .sfa-promo{background:var(--navy);color:#fff;border-radius:12px;padding:16px}
 .sfa-promo small{display:block;font:800 10px var(--f-ui);letter-spacing:.12em;text-transform:uppercase;color:var(--yellow);margin-bottom:6px}
 .sfa-promo b{display:block;font:800 16px/1.3 var(--f-ui);margin-bottom:12px}
@@ -134,8 +138,8 @@ new MutationObserver(ms=>ms.forEach(m=>{if(m.target.classList&&m.target.classLis
 </script>
 <header class="sfa-top"><div class="in">
   <a class="sfa-logo" href="https://sfascienceforall-cell.github.io/simulations/"><i>SFA</i>Science For All</a>
-  <nav class="sfa-nav"><a class="on" href="https://sfascienceforall-cell.github.io/simulations/">Simulations</a><a href="#">Prépa médecine</a></nav>
-  <a class="sfa-cta" href="#">Découvrir la prépa</a></div></header>
+  <nav class="sfa-nav"><a class="on" href="https://sfascienceforall-cell.github.io/simulations/">Simulations</a><a href="https://sfascienceforall-cell.github.io/simulations/#EX">Exercices</a><a href="https://sfascienceforall-cell.github.io/simulations/prepa/">Prépa médecine</a></nav>
+  <a class="sfa-cta" href="https://sfascienceforall-cell.github.io/simulations/prepa/">Découvrir la prépa</a></div></header>
 <div class="sfa-page">
 <nav class="sfa-crumbs" aria-label="Fil d'Ariane"><a href="https://sfascienceforall-cell.github.io/simulations/">Simulations</a>›<a href="https://sfascienceforall-cell.github.io/simulations/#PH4">PH4 · Travail et énergie</a>›<b>Énergies</b></nav>
 <div class="sfa-grid"><main style="min-width:0">
@@ -161,7 +165,10 @@ new MutationObserver(ms=>ms.forEach(m=>{if(m.target.classList&&m.target.classLis
 
 <script>
 const cv=document.getElementById('cv'),ctx=cv.getContext('2d');
-const RED='#E24B4A',BLUE='#378ADD',GREEN='#1D9E75',INK='#3d3d3a',GREY='#9aa0a6',AX='#c8ccd0';
+const RED='#E24B4A',BLUE='#378ADD',BLUE_D='#185fa5',GREEN='#1D9E75',INK='#13233a',GREY='#8a95a3',AX='#d3d9e2',GRID='#e9edf2';
+const FONT=(w,sz)=>w+' '+sz+'px Mulish,system-ui,sans-serif';
+function lbl(t,x,y,col,font,align){ctx.save();ctx.font=font;ctx.textAlign=align||'center';ctx.lineJoin='round';
+  ctx.strokeStyle='rgba(255,255,255,.92)';ctx.lineWidth=4;ctx.strokeText(t,x,y);ctx.fillStyle=col;ctx.fillText(t,x,y);ctx.restore();}
 let W=0,H=0,dpr=1,paused=false,A=2.2,speed=0.9,phase=0;
 const cpar=0.32, Amax=2.5;
 document.getElementById('A').addEventListener('input',e=>{A=+e.target.value;document.getElementById('Av').textContent=A.toFixed(1);});
@@ -175,45 +182,78 @@ function draw(){syncSize();ctx.clearRect(0,0,W,H);ctx.fillStyle='#fff';ctx.fillR
   const x=A*Math.cos(phase);
   const E0=cpar*A*A, U=cpar*x*x, K=E0-U;
 
-  // ===== GAUCHE : vallée parabolique + bille (×1.5) =====
-  const Lw=W*0.44, cxL=Lw*0.52, baseY=H*0.84;
-  const scL=Math.min(Lw*0.44/Amax, H*0.60/(cpar*Amax*Amax));   // ~1.5x plus grande
-  ctx.strokeStyle=INK;ctx.lineWidth=3;ctx.beginPath();
-  for(let xx=-Amax;xx<=Amax;xx+=0.05){const px=cxL+xx*scL,py=baseY-cpar*xx*xx*scL;xx===-Amax?ctx.moveTo(px,py):ctx.lineTo(px,py);}ctx.stroke();
-  ctx.strokeStyle='rgba(0,0,0,0.12)';ctx.setLineDash([3,4]);ctx.beginPath();ctx.moveTo(cxL-Amax*scL,baseY);ctx.lineTo(cxL+Amax*scL,baseY);ctx.stroke();ctx.setLineDash([]);
-  const bx=cxL+x*scL,by=baseY-cpar*x*x*scL;
-  ctx.strokeStyle=BLUE;ctx.lineWidth=1.5;ctx.setLineDash([3,3]);ctx.beginPath();ctx.moveTo(bx,by);ctx.lineTo(bx,baseY);ctx.stroke();ctx.setLineDash([]);
-  ctx.beginPath();ctx.arc(bx,by,12,0,7);ctx.fillStyle='#fff';ctx.fill();ctx.strokeStyle=INK;ctx.lineWidth=2.5;ctx.stroke();
-  ctx.fillStyle=GREY;ctx.font='11px Mulish,system-ui,sans-serif';ctx.textAlign='center';{const tw=ctx.measureText('bille dans une vallée parabolique').width;ctx.fillText('bille dans une vallée parabolique',Math.max(cxL,tw/2+6),H*0.95);}
+  const narrow=W<600;
+  // zones : côte à côte sur bureau, empilées sur téléphone
+  let LZ,RZ;
+  if(narrow){LZ={x:12,y:8,w:W-24,h:H*0.38};const ly0=LZ.y+LZ.h+8;RZ={x:44,y:ly0+28+34,w:W-44-18,h:H-(ly0+28+34)-40};}
+  else{LZ={x:16,y:16,w:W*0.46-16,h:H-32};RZ={x:W*0.52+30,y:58,w:W*0.48-30-24,h:H-58-50};}
 
-  // ===== DROITE : deux paraboles E-vs-x =====
-  const gx=W*0.52,gw=W*0.44,gTop=H*0.12,gBot=H*0.82;
+  // ===== vallée parabolique + bille =====
+  const capG=narrow?30:34;
+  const scL=Math.min((LZ.w-40)/(2*Amax), (LZ.h-capG-20)/(cpar*Amax*Amax));
+  const vH=cpar*Amax*Amax*scL, cxL=LZ.x+LZ.w/2, baseY=LZ.y+(LZ.h-vH-capG)/2+vH;
+  const vx=xx=>cxL+xx*scL, vy=xx=>baseY-cpar*xx*xx*scL;
+  // relief : remplissage doux sous la courbe
+  const rg=ctx.createLinearGradient(0,vy(Amax),0,baseY+8);rg.addColorStop(0,'#eef2f7');rg.addColorStop(1,"#e3e9f0");
+  ctx.beginPath();ctx.moveTo(vx(-Amax),vy(-Amax));for(let xx=-Amax;xx<=Amax+1e-9;xx+=0.05)ctx.lineTo(vx(xx),vy(xx));
+  ctx.lineTo(vx(Amax),baseY+8);ctx.lineTo(vx(-Amax),baseY+8);ctx.closePath();ctx.fillStyle=rg;ctx.fill();
+  ctx.strokeStyle=INK;ctx.lineWidth=3;ctx.lineCap='round';ctx.lineJoin='round';ctx.beginPath();
+  for(let xx=-Amax;xx<=Amax+1e-9;xx+=0.05){xx===-Amax?ctx.moveTo(vx(xx),vy(xx)):ctx.lineTo(vx(xx),vy(xx));}ctx.stroke();
+  // niveau de référence (U = 0) et niveau E (hauteur max atteinte)
+  ctx.strokeStyle='#c3cbd6';ctx.lineWidth=1;ctx.setLineDash([4,4]);ctx.beginPath();ctx.moveTo(vx(-Amax),baseY);ctx.lineTo(vx(Amax),baseY);ctx.stroke();
+  ctx.strokeStyle=GREEN;ctx.globalAlpha=.6;ctx.beginPath();ctx.moveTo(vx(-A)-14,vy(A));ctx.lineTo(vx(A)+14,vy(A));ctx.stroke();ctx.globalAlpha=1;ctx.setLineDash([]);
+  lbl('E',vx(A)+20,vy(A)+5,GREEN,FONT(800,13),'left');
+  const R=narrow?11:14;
+  const bx=vx(x),by=vy(x),sl=-2*cpar*x,nn=Math.hypot(sl,1),nx=sl/nn,ny=-1/nn;   // normale vers l'intérieur
+  const cX=bx+nx*R,cY=by+ny*R;
+  // hauteur (U)
+  ctx.strokeStyle=BLUE;ctx.lineWidth=2;ctx.setLineDash([4,4]);ctx.beginPath();ctx.moveTo(cX,cY+R+2);ctx.lineTo(cX,baseY);ctx.stroke();ctx.setLineDash([]);
+  if(baseY-cY>R+22)lbl('h',cX+(x<0?-10:10),(cY+R+baseY)/2+5,BLUE_D,FONT(800,13),x<0?'right':'left');
+  // bille : dégradé radial + ombre douce
+  ctx.save();ctx.shadowColor='rgba(19,35,58,.28)';ctx.shadowBlur=8;ctx.shadowOffsetY=3;
+  const bg=ctx.createRadialGradient(cX-R*0.35,cY-R*0.4,R*0.15,cX,cY,R);bg.addColorStop(0,'#ffd9a8');bg.addColorStop(1,'#BA7517');
+  ctx.fillStyle=bg;ctx.beginPath();ctx.arc(cX,cY,R,0,7);ctx.fill();ctx.restore();
+  ctx.strokeStyle='#8a5510';ctx.lineWidth=1.5;ctx.beginPath();ctx.arc(cX,cY,R,0,7);ctx.stroke();
+  ctx.fillStyle=GREY;ctx.font=FONT(700,12);ctx.textAlign='center';ctx.fillText('bille dans une vallée parabolique',cxL,baseY+capG);
+
+  // ===== graphe énergie – position =====
+  const gx=RZ.x,gw=RZ.w,gTop=RZ.y,gBot=RZ.y+RZ.h;
   const XX=xx=>gx+(xx+Amax)/(2*Amax)*gw;
-  const YY=e=>gBot-(e/(cpar*Amax*Amax*1.28))*(gBot-gTop);   // marge en haut
-  ctx.fillStyle='#fafafa';ctx.fillRect(gx,gTop,gw,gBot-gTop);ctx.strokeStyle='#e0e0e0';ctx.lineWidth=1;ctx.strokeRect(gx,gTop,gw,gBot-gTop);
-  ctx.fillStyle=GREY;ctx.font='11px Mulish,system-ui,sans-serif';ctx.textAlign='left';ctx.fillText('énergie',gx+2,gBot+14);ctx.save();ctx.translate(gx+12,gTop+40);ctx.restore();
-  ctx.textAlign='right';ctx.fillText('position x',gx+gw-2,gBot+14);  // sous le cadre : ne chevauche plus les courbes
-
-  // légende (au-dessus de la ligne E, zone vide) — plus de labels sur les courbes
-  let lx=gx+10,ly=gTop+15;
-  function chip(col,txt){ctx.font='600 12px Mulish,system-ui,sans-serif';const tw=ctx.measureText(txt).width;
-    if(lx>gx+10&&lx+15+tw>gx+gw-4){lx=gx+10;ly+=17;}  // retour à la ligne si la légende dépasse le cadre
-    ctx.fillStyle=col;ctx.fillRect(lx,ly-9,11,11);ctx.fillStyle=INK;ctx.textAlign='left';ctx.fillText(txt,lx+15,ly);lx+=15+tw+18;}
-  chip(GREEN,'E = K+U');chip(BLUE,'U(x)');chip(RED,'K(x)');
-
-  // E0 (ligne plate verte)
-  ctx.strokeStyle=GREEN;ctx.lineWidth=2.4;ctx.beginPath();ctx.moveTo(XX(-A),YY(E0));ctx.lineTo(XX(A),YY(E0));ctx.stroke();
-  // U(x) ↑ (bleu), K(x) ↓ (rouge)
-  ctx.strokeStyle=BLUE;ctx.lineWidth=2.6;ctx.beginPath();
-  for(let xx=-A;xx<=A;xx+=0.02){const px=XX(xx),py=YY(cpar*xx*xx);xx===-A?ctx.moveTo(px,py):ctx.lineTo(px,py);}ctx.stroke();
-  ctx.strokeStyle=RED;ctx.lineWidth=2.6;ctx.beginPath();
-  for(let xx=-A;xx<=A;xx+=0.02){const px=XX(xx),py=YY(E0-cpar*xx*xx);xx===-A?ctx.moveTo(px,py):ctx.lineTo(px,py);}ctx.stroke();
-  // marqueur position courante
-  ctx.strokeStyle='rgba(0,0,0,0.2)';ctx.setLineDash([3,3]);ctx.beginPath();ctx.moveTo(XX(x),gTop);ctx.lineTo(XX(x),gBot);ctx.stroke();ctx.setLineDash([]);
-  ctx.beginPath();ctx.arc(XX(x),YY(U),4.5,0,7);ctx.fillStyle=BLUE;ctx.fill();
-  ctx.beginPath();ctx.arc(XX(x),YY(K),4.5,0,7);ctx.fillStyle=RED;ctx.fill();
-  ctx.beginPath();ctx.arc(XX(x),YY(E0),4,0,7);ctx.fillStyle=GREEN;ctx.fill();
-
+  const YY=e=>gBot-(e/(cpar*Amax*Amax*1.12))*(gBot-gTop);
+  // grille
+  ctx.lineWidth=1;ctx.strokeStyle=GRID;
+  for(let k=-2;k<=2;k++){const X=XX(k);ctx.beginPath();ctx.moveTo(X,gTop);ctx.lineTo(X,gBot);ctx.stroke();}
+  for(let e=0.5;YY(e)>gTop;e+=0.5){const Y=YY(e);ctx.beginPath();ctx.moveTo(gx,Y);ctx.lineTo(gx+gw,Y);ctx.stroke();}
+  ctx.fillStyle=GREY;ctx.font=FONT(700,12);
+  for(let k=-2;k<=2;k++){ctx.textAlign='center';ctx.fillText(k===0?'0':(k>0?k:'−'+(-k)),XX(k),gBot+17);}
+  for(let e=0.5;YY(e)>gTop+6;e+=0.5){ctx.textAlign='right';ctx.fillText(e.toFixed(1),gx-7,YY(e)+4);}
+  ctx.textAlign='right';ctx.fillText('0',gx-7,gBot+4);
+  // axes
+  ctx.strokeStyle='#b9c2ce';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(XX(0),gTop-6);ctx.lineTo(XX(0),gBot);ctx.moveTo(gx,gBot);ctx.lineTo(gx+gw+6,gBot);ctx.stroke();
+  ctx.fillStyle='#b9c2ce';ctx.beginPath();ctx.moveTo(gx+gw+10,gBot);ctx.lineTo(gx+gw+2,gBot-4);ctx.lineTo(gx+gw+2,gBot+4);ctx.closePath();ctx.fill();
+  ctx.fillStyle=INK;ctx.font=FONT(800,13);ctx.textAlign='right';ctx.fillText('x',gx+gw+4,gBot+32);
+  ctx.textAlign='left';ctx.fillText('Énergie',gx-36,gTop-12);
+  // légende (panneau)
+  ctx.font=FONT(700,12);const items=[[GREEN,'E = K + U'],[BLUE,'U (potentielle)'],[RED,'K (cinétique)']];
+  const iw=items.map(t=>ctx.measureText(t[1]).width+22);const tot=iw.reduce((a,b)=>a+b,0)+12;
+  const oneLine=tot<=Math.min(gw+30,W-24);
+  const pW=oneLine?tot:Math.max(...iw)+16,pH=oneLine?28:items.length*20+10;
+  const pX=oneLine?Math.min(gx+gw-pW,Math.max(12,gx+gw/2-pW/2)):gx+gw-pW-4, pY=oneLine?(narrow?LZ.y+LZ.h+8:12):gTop+4;
+  ctx.fillStyle='#fff';ctx.strokeStyle='#e3e7ed';ctx.lineWidth=1;ctx.beginPath();ctx.roundRect(pX,pY,pW,pH,8);ctx.fill();ctx.stroke();
+  let ix=pX+10;items.forEach((t,k)=>{const iy=oneLine?pY+18:pY+19+k*20;const xx=oneLine?ix:pX+10;
+    ctx.fillStyle=t[0];ctx.beginPath();ctx.roundRect(xx,iy-9,12,4,2);ctx.fill();ctx.fillStyle=INK;ctx.textAlign='left';ctx.fillText(t[1],xx+18,iy-3);ix+=iw[k];});
+  // courbes
+  ctx.lineCap='round';ctx.lineJoin='round';
+  ctx.strokeStyle=GREEN;ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(XX(-A),YY(E0));ctx.lineTo(XX(A),YY(E0));ctx.stroke();
+  ctx.strokeStyle=BLUE;ctx.lineWidth=3;ctx.beginPath();
+  for(let xx=-A;xx<=A+1e-9;xx+=0.02){const px=XX(xx),py=YY(cpar*xx*xx);xx===-A?ctx.moveTo(px,py):ctx.lineTo(px,py);}ctx.stroke();
+  ctx.strokeStyle=RED;ctx.lineWidth=3;ctx.beginPath();
+  for(let xx=-A;xx<=A+1e-9;xx+=0.02){const px=XX(xx),py=YY(E0-cpar*xx*xx);xx===-A?ctx.moveTo(px,py):ctx.lineTo(px,py);}ctx.stroke();
+  // position courante : barres U et K empilées sous E
+  const X0=XX(x);
+  ctx.strokeStyle='#8a95a3';ctx.lineWidth=1;ctx.setLineDash([4,4]);ctx.beginPath();ctx.moveTo(X0,gTop);ctx.lineTo(X0,gBot);ctx.stroke();ctx.setLineDash([]);
+  ctx.globalAlpha=.22;ctx.fillStyle=BLUE;ctx.fillRect(X0-5,YY(U),10,gBot-YY(U));ctx.fillStyle=RED;ctx.fillRect(X0-5,YY(E0),10,YY(U)-YY(E0));ctx.globalAlpha=1;
+  for(const [yy,c] of [[YY(U),BLUE],[YY(K),RED],[YY(E0),GREEN]]){ctx.beginPath();ctx.arc(X0,yy,5.5,0,7);ctx.fillStyle=c;ctx.fill();ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.stroke();}
   document.getElementById('info').innerHTML='x='+x.toFixed(2)+' | <b style="color:'+BLUE+'">U='+U.toFixed(2)+'</b> + <b style="color:'+RED+'">K='+K.toFixed(2)+'</b> = <b style="color:'+GREEN+'">E='+E0.toFixed(2)+'</b> (constante) — au fond K max, aux extrêmes U max';
   requestAnimationFrame(draw);}
 draw();
@@ -221,7 +261,7 @@ draw();
 </section></main>
 <aside class="sfa-side">
   <div class="sfa-list"><h2>PH4 · Travail, énergie, puissance<span>5 simulations</span></h2><ol><li><a href="https://sfascienceforall-cell.github.io/Travil/"><i>01</i>Travail d&#x27;une force</a></li><li><a href="https://sfascienceforall-cell.github.io/Travail-gravite/"><i>02</i>Travail de la gravité</a></li><li><a class="on" aria-current="page" href="https://sfascienceforall-cell.github.io/-n-rgies/"><i>03</i>Énergies</a></li><li><a href="https://sfascienceforall-cell.github.io/energie-exemples/"><i>04</i>Énergie : exemples</a></li><li><a href="https://sfascienceforall-cell.github.io/energie_ressort/"><i>05</i>Énergie d&#x27;un ressort</a></li></ol></div>
-  <div class="sfa-promo"><small>Envie d'aller plus loin ?</small><b>La prépa SFA : le cours complet, les exercices type examen corrigés et le suivi.</b><a href="#">Voir la prépa</a></div>
+  <div class="sfa-promo"><small>Envie d'aller plus loin ?</small><b>La prépa SFA : le cours complet, les exercices type examen corrigés et le suivi.</b><a href="https://sfascienceforall-cell.github.io/simulations/prepa/">Voir la prépa</a></div>
 </aside></div></div>
 <footer class="sfa-foot">Science For All · simulations interactives de physique</footer>
 </body>
